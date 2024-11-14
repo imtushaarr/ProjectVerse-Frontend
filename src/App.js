@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom'; 
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Loader from './components/Loader';
+import AddProject from './pages/addProject';
 
-function App() {
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+
+
+// // Lazy load your pages
+// const Home = lazy(() => import('./pages/Home'));
+// const Projects = lazy(() => import('./pages/Projects'));
+// const AboutUs = lazy(() => import('./pages/AboutUs'));
+// const ContactUs = lazy(() => import('./pages/ContactUs'));
+
+const AppRouter = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/addproject" element={<AddProject />} />
+        </Routes>
+      </Suspense>
+      <Footer />
+    </>
   );
-}
+};
 
-export default App;
+export default AppRouter;
