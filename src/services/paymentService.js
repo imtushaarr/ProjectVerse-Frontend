@@ -14,7 +14,7 @@ export const handlePayment = async (projectId) => {
 
   if (response.ok) {
     const options = {
-      key: 'rzp_live_afo9xw5T1MT8gE', // Replace with your Razorpay live/test key
+      key: 'ENTER_YOUR_KEY_ID', // Replace with your Razorpay live/test key
       amount: data.amount,
       currency: data.currency,
       order_id: data.orderId,
